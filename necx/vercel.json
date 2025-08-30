@@ -1,9 +1,14 @@
 {
-  "build": {
-    "env": {
-      "AIRTABLE_TOKEN": "@AIRTABLE_TOKEN",
-      "AIRTABLE_BASE_ID": "@AIRTABLE_BASE_ID",
-      "AIRTABLE_TABLE_NAME": "@AIRTABLE_TABLE_NAME"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
     }
+  ],
+  "env": {
+    "AIRTABLE_TOKEN": "@AIRTABLE_TOKEN",
+    "AIRTABLE_BASE_ID": "@AIRTABLE_BASE_ID",
+    "AIRTABLE_TABLE_NAME": "@AIRTABLE_TABLE_NAME"
   }
 }
