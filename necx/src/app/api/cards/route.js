@@ -1,17 +1,15 @@
-import { fetchCards } from "@/lib/airtable";
+import { NextResponse } from "next/server";
+import { getDB } from "@/lib/db";
 
 export async function GET() {
   try {
-    const cards = await fetchCards();
-    return new Response(JSON.stringify(cards), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
+    const db = getDB();
+    const [rows] = await db.query(
+      "SELECT id, name, image_url, category_id FROM item ORDER BY id DESC LIMIT 50"
+    );
+    return NextResponse.json(rows);
   } catch (err) {
-    console.error("Airtable fetch failed:", err);
-    return new Response(JSON.stringify({ error: "Airtable fetch failed" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+    console.error("DB error:", err);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
