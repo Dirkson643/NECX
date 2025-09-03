@@ -1,16 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 
 export default function Home() {
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  if (loading) return <p className="p-6">Loading cards...</p>;
-  if (error) return <p className="p-6 text-red-600">Error: {error}</p>;
-  
   return (
     <main className="p-8">
       <h1 className="text-3xl font-bold mb-6">Welcome to NECX</h1>
@@ -24,5 +16,5 @@ export default function Home() {
         <Card title="My Collection" href="/users/me/items" icon="👤" />
       </div>
     </main>
-  )
+  );
 }
